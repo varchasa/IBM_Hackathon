@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<!------------------ libabries ----------->
+<head>
+  <title> Sentiment Analysis</title>
+
+  <link rel="stylesheet" type="text/css" href= "{{ url_for('static', filename='/css/styles.css') }}">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src=  "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">   </script>  
+  <script>
+  function myFunction() {
+   alert('Thanks for your respnse');
+  }
+</script>
+<script>
+    var x=0;
+    var array=Array();
+    function angry()
+    {
+      var a = document.getElementById("angry").value;
+      document.getElementById("value").value=a;
+    }
+    function fear()
+    {
+      var a = document.getElementById("fear").value;
+      document.getElementById("value").value=a;
+    }
+    function sad()
+    {
+      var a = document.getElementById("sad").value;
+      document.getElementById("value").value=a;
+    }
+    function neutral()
+    {
+      var a = document.getElementById("neutral").value;
+      document.getElementById("value").value=a;
+    }
+    function surprise()
+    {
+      var a = document.getElementById("surprise").value;
+      document.getElementById("value").value=a;
+    }
+    function trust()
+    {
+      var a = document.getElementById("trust").value;
+      document.getElementById("value").value=a;
+    }
+    function joy()
+    {
+      var a = document.getElementById("joy").value;
+      document.getElementById("value").value=a;
+    }
+  </script>
+</head>
+
+<body>
+<!-----------------navbar------------ -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">SENTIMENT ANALYSIS OF COVID-19 LOCKDOWN RESPONSE</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/">HOME <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#makeprediction">PREDICT</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#dashboard">DASHBOARD</a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="#articles">ARTICLES</a>
+      </li>
+      
+</ul>
+    
+  </div>
+</nav>
+<!-----------------navbar ends------------ -->
+
+<!-----------------Saving data------------ -->
+<center>
+<div>
+  <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">What's your response</h1>
+    <p class="lead">As the government of India declares lockdown without any prior information. So what you think about it ?</p>
+    <br>
+      <div class ="btn-group btn-group-lg">
+    
+    <input type="button" id="angry" value="Angry" onclick ="angry()" class="btn btn-danger"></input>
+    <input type="button" id="fear" value="Fear" onclick ="fear()"class="btn btn-warning"></input>
+    <input type="button" id="sad" value="Sad" onclick ="sad()" class="btn btn-secondary"></input>
+    <input type="button" id="neutral" value="Neutral" onclick ="neutral()" class="btn btn-basic"></input>
+    <input type="button" id="surprise" value="Surprise" onclick ="surprise()" class="btn btn-info"></input>
+    <input type="button" id="trust" value="Trust" onclick ="trust()" class="btn btn-primary"></input>
+    <input type="button" id="joy" value="Joy" onclick ="joy()" class="btn btn-success"></input>
+  </div>
+ </div>
+    </div>
+    <form action="{{ url_for('Save') }}" method="POST">
+    <textarea id="value" rows="2" cols="15" name="comment" onblur="setbg('white')"></textarea>
+   <br>
+    <input type ="submit" class="btn btn-dark" value="Save" target="_blank" name="Save" onclick="myFunction()"></button>
+    </form>
+<!---------------saving response ended---------------------->
+    
+    
+</div>
+</center>
+
+<br><br><br><br><br><br>
+
+<!---------------predict + open---------------------->
+  <center>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card"><br>
+      <img src="../static/img/predict 2.jpg" alt="..." id="makeprediction">
+
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <br>
+        <p class="card-text">Predict the reaction of people towards lockdown.</p>
+        <form action="{{ url_for('Predict') }}">
+          <input type ="submit" class="btn btn-primary" value="Predict" target="_blank" name="Predict"></button>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="card">
+      <img src="../static/img/analysis.jpg" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text">Analysis of COVID-19 tweets towards lockdown.</p>
+        <form action="{{ url_for('Open') }}">
+          <input type ="submit" class="btn btn-primary" value="Open" target="_blank" name="Open"></button>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</center>
+</div>
+<!---------------Predict + open ended---------------------->
+<br><br><br><br><br>
+
+<!---------------dashboard---------------------->
+
+<div class="card text-center">
+  <div class="card-header">RESEARCH WORK</div>
+  <div class="card-body">
+    <h5 class="card-title" id="dashboard">Dashboard on vizualization</h5>
+    <p class="card-text">Built a dashboard with visualization of poeple reaction to the governement announcements on lockdown extension</p>
+    <form action ="{{ url_for('dashboard') }}">
+    <input type = "submit" class="btn btn-primary" value="Click to view" target="_blank" name="dashboard"></a>
+    </form>
+  </div>
+  <div class="card-footer text-muted">
+    
+  </div>
+</div>
+
+<!--------------------dashboard ended--------------------->
+
+<br><br>
+<center>
+<div class="card" style="width: 18rem;">
+  <div class="card-header" id="articles">
+    <b>Articles<b>
+  </div>
+  <ul class="list-group list-group-flush">
+    <form action="{{ url_for('Post') }}">
+    <a class="list-group-item" href="/Post">Post COVID Life
+      </a></form>
+      <form action="{{ url_for('Pre') }}">
+      	<a class="list-group-item" href="/Pre">Pre COVID Life
+    	</a></form>
+    	
+  </ul></div></center><br><br></body></html>
